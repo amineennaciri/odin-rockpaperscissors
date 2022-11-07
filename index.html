@@ -7,7 +7,55 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
+    <button>Rock</button>
+    <button>Paper</button>
+    <button>Scissors</button>
     <script>
+    //let playerSelection = document.querySelector('button').value
+/*     let btns = document.querySelectorAll('button').addEventListener('click',letPlay)
+    function letPlay(){
+         
+    } 
+     */
+        let btns = document.querySelectorAll('button');
+        //div
+        const content = document.createElement('div');
+        content.classList.add('content');
+        content.textContent = 'Results of the Rock Paper Scissor Game!';
+        let bod = document.querySelector('body') 
+        bod.appendChild(content);
+        //p
+        const result = document.createElement('p');
+        result.classList.add('resultP');
+        content.appendChild(result);
+        //p winning game
+        const resultGame = document.createElement('p');
+        resultGame.classList.add('resultG');
+        content.appendChild(resultGame);
+        //p end game please refresh
+        const resultEnd = document.createElement('p');
+        resultEnd.classList.add('resultE');
+        content.appendChild(resultEnd);
+        // score
+        let computerWins = 0
+        let playerWins = 0
+
+btns.forEach(function (i) {
+  i.addEventListener('click', function() {
+    let playerSelection = i.innerHTML;
+    if(playerWins === 5 || computerWins === 5){
+        resultEnd.textContent = `The game has finished please refresh the browser if you want to play a new set`
+        resultEnd.style.backgroundColor = 'yellow'
+        resultEnd.style.color = 'red'
+        return `The game has finished please refresh the browser if you want to play a new set`
+    }else{
+        console.log(playRockPaperScissors(playerSelection,getComputerChoice()))
+    }
+    
+  });
+});
+
+    //////////////////////////////////////
         function getComputerChoice(){
             let randomNumber = Math.random()
             if(randomNumber<=0.33){
@@ -26,19 +74,32 @@
             || (playerSelection === 'Paper' && computerSelection === 'Rock')
             || (playerSelection === 'Scissors' && computerSelection === 'Paper')){
                 /* return `You Win! ${playerSelection} beats ${computerSelection}` */
-                return `You Win!`
+                // p
+                playerWins++
+                result.textContent = `You Win!`
+                if(playerWins === 5){
+                    resultGame.textContent = `The Winner of the Rock Paper Scissor Game is the Player!`
+                    return `The Winner of the Rock Paper Scissor Game is the Player!`
+                }return `You Win!`
             }else if(playerSelection ===computerSelection){
+                result.textContent = `You Tied!`
                 return `You Tied!`
             }else{
                 /* return `You Lose! ${computerSelection} beats ${playerSelection}` */
-                return `You Lose!`
+                computerWins++
+                result.textContent = `You Lose!`;
+                if(computerWins === 5){
+                    resultGame.textContent = `The Winner of the Rock Paper Scissor Game is the Computer!`
+                    return `The Winner of the Rock Paper Scissor Game is the Computer!`
+                }return `You Lose!`
             }
             
         }
-/*         let playerSelection = prompt(`Let's play Rock Paper Scissors`)
-        console.log(playRockPaperScissors(playerSelection,getComputerChoice())) */
+        //let playerSelection = prompt(`Let's play Rock Paper Scissors`)
+/*         let playerSelection = document.querySelector(button).value
+        const letPlay = console.log(playRockPaperScissors(playerSelection,getComputerChoice()))  */
 
-        function game(){
+/*         function game(){
             let result = ""
             let computerWins = 0
             let playerWins = 0
@@ -60,7 +121,11 @@
                 return `Computer won ${computerWins} times and the player won ${playerWins} times, the winner of the 5 games is neither one, this is a tie!`
             }
         }
-        console.log(game())
+        console.log(game()) */
+
+
+
+
     </script>
 </body>
 </html>
